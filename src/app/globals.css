@@ -12,15 +12,51 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Carousel customization */
+.tenant-carousel .carousel .slide {
+  background: transparent !important;
+}
+
+.tenant-carousel .carousel-slider,
+.tenant-carousel .slider-wrapper,
+.tenant-carousel .slider {
+  height: 100% !important;
+}
+
+.tenant-carousel .control-arrow {
+  background: rgba(0, 0, 0, 0.5) !important;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tenant-carousel:hover .control-arrow {
+  opacity: 1;
+}
+
+.tenant-carousel .control-dots {
+  bottom: 10px !important;
+  margin: 0 !important;
+}
+
+.tenant-carousel .control-dots .dot {
+  background: rgba(255, 255, 255, 0.5) !important;
+  box-shadow: none !important;
+  width: 6px !important;
+  height: 6px !important;
+  margin: 0 4px !important;
+}
+
+.tenant-carousel .control-dots .dot.selected {
+  background: rgba(255, 255, 255, 1) !important;
 }
