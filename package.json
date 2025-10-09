@@ -16,10 +16,12 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@next/eslint-plugin-next": "^15.5.4",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@typescript-eslint/parser": "^8.46.0",
     "eslint": "^9",
     "eslint-config-next": "15.5.4",
     "eslint-plugin-react-hooks": "^6.1.1",
