@@ -220,11 +220,11 @@ import { trackEvent, trackPageView, trackSectionView } from '@/components/analyt
 // Track custom events
 trackEvent('button_click', {
   button_name: 'Request Information',
-  space_title: '1123 N Bowie St',
+  space_title: '1127 N Bowie St',
 });
 
 // Track virtual page views
-trackPageView('Space Details', '/spaces/1123-n-bowie');
+trackPageView('Space Details', '/spaces/1127-n-bowie');
 
 // Track section views (already automatic via SectionTracker)
 trackSectionView('Community Members', 'tenants');

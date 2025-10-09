@@ -14,21 +14,19 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ZDT's Adventure Plaza | Community Entertainment Hub in Seguin, TX",
+  title: "ZDT's Adventure Plaza in Seguin, TX",
   description: "Supporting small businesses and community entertainment in Seguin, Texas. Premium commercial spaces available for entertainment venues, family attractions, and local entrepreneurs.",
   keywords: ["commercial real estate Seguin TX", "entertainment space for lease", "community entertainment hub", "Seguin Texas business space", "warehouse space Seguin"],
   authors: [{ name: "ZDT's Adventure Plaza" }],
   creator: "ZDT's Adventure Plaza",
   publisher: "ZDT's Adventure Plaza",
-  metadataBase: new URL("https://www.zdtsadventureplaza.com"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://www.zdtsadventureplaza.com",
-    title: "ZDT's Adventure Plaza | Community Entertainment Hub in Seguin, TX",
+    title: "ZDT's Adventure Plaza in Seguin, TX",
     description: "Supporting small businesses and community entertainment in Seguin, Texas. Premium commercial spaces available for entertainment venues, family attractions, and local entrepreneurs.",
     siteName: "ZDT's Adventure Plaza",
     images: [
@@ -36,13 +34,13 @@ export const metadata: Metadata = {
         url: "/images/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "ZDT's Adventure Plaza - Community Entertainment Hub in Seguin, TX",
+        alt: "ZDT's Adventure Plaza in Seguin, TX",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "ZDT's Adventure Plaza | Community Entertainment Hub in Seguin, TX",
+    title: "ZDT's Adventure Plaza in Seguin, TX",
     description: "Supporting small businesses and community entertainment in Seguin, Texas. Premium commercial spaces available for entertainment venues.",
     images: ["/images/og-image.jpg"],
   },
@@ -73,7 +71,6 @@ export default function RootLayout({
     "@type": "LocalBusiness",
     "name": "ZDT's Adventure Plaza",
     "description": "Community entertainment hub and commercial real estate in Seguin, Texas. Supporting local small businesses and family entertainment.",
-    "url": "https://www.zdtsadventureplaza.com",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "1115 N Bowie St",
@@ -96,7 +93,6 @@ export default function RootLayout({
       }
     },
     "priceRange": "$$",
-    "image": "https://www.zdtsadventureplaza.com/images/og-image.jpg",
     "sameAs": [
       // Add social media profiles here when available
       // "https://www.facebook.com/zdtsadventureplaza",
