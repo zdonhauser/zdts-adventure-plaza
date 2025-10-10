@@ -15,13 +15,13 @@ export default function HeroSection() {
       />
       <div className="relative z-20 max-w-5xl mx-auto px-6 text-center">
         <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight">
-          Local Entertainment<br />Hub
+          A New Chapter in<br />Local Entertainment
         </h2>
         <p className="text-xl md:text-2xl text-gray-200 max-w-2xl mx-auto mb-12">
-          Supporting small businesses and community entertainment in Seguin, TX
+          Transforming a beloved amusement park into a vibrant hub for entertainment and tourism businesses
         </p>
         <Button href="#available">
-          Join Our Community
+          Explore Available Spaces
         </Button>
       </div>
     </section>

@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: [],
     },
-    sitemap: 'https://www.zdtsadventureplaza.com/sitemap.xml',
+    sitemap: 'https://www.zdtamusement.com/sitemap.xml',
   };
 }

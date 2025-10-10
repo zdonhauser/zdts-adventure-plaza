@@ -2,20 +2,6 @@ import { AvailableSpace } from "./types";
 
 export const availableSpaces: AvailableSpace[] = [
   {
-    title: "1127 N Bowie St",
-    sqft: "11,000 sq ft",
-    features: "Expansive warehouse space, high ceilings, flexible layout",
-    description: "Large-scale entertainment venue perfect for bowling alleys, laser tag arenas, indoor sports facilities, or multi-use entertainment complexes.",
-    images: [
-      { src: "/images/spaces/1127-N-Bowie/IMG_2602.jpg", label: "Main View" },
-      { src: "/images/spaces/1127-N-Bowie/warehouse.png", label: "Interior" },
-      { src: "/images/spaces/1127-N-Bowie/bowling-concept.png", label: "Bowling Concept" },
-      { src: "/images/spaces/1127-N-Bowie/laser-tag-concept.png", label: "Laser Tag Concept" },
-      { src: "/images/spaces/1127-N-Bowie/fm.jpg", label: "Farmers Market Concept" },
-      { src: "/images/spaces/1127-N-Bowie/manu.jpg", label: "Manufacturing Concept" },
-    ]
-  },
-  {
     title: "1202 N Camp St",
     sqft: "2,700 sq ft",
     features: "Multiple rooms, excellent visibility, ample parking",
@@ -39,6 +25,20 @@ export const availableSpaces: AvailableSpace[] = [
       { src: "/images/spaces/1204-N-Camp/IMG_2592.JPG", label: "Interior" },
       { src: "/images/spaces/1204-N-Camp/event-concept.jpg", label: "Event Space Concept" },
       { src: "/images/spaces/1204-N-Camp/pizza-concept.jpg", label: "Pizza Restaurant Concept" },
+    ]
+  },
+  {
+    title: "1127 N Bowie St",
+    sqft: "11,000 sq ft",
+    features: "Expansive warehouse space, high ceilings, flexible layout",
+    description: "Large-scale entertainment venue perfect for bowling alleys, laser tag arenas, indoor sports facilities, or multi-use entertainment complexes.",
+    images: [
+      { src: "/images/spaces/1127-N-Bowie/IMG_2602.jpg", label: "Main View" },
+      { src: "/images/spaces/1127-N-Bowie/warehouse.png", label: "Interior" },
+      { src: "/images/spaces/1127-N-Bowie/bowling-concept.png", label: "Bowling Concept" },
+      { src: "/images/spaces/1127-N-Bowie/laser-tag-concept.png", label: "Laser Tag Concept" },
+      { src: "/images/spaces/1127-N-Bowie/fm.jpg", label: "Farmers Market Concept" },
+      { src: "/images/spaces/1127-N-Bowie/manu.jpg", label: "Manufacturing Concept" },
     ]
   },
   {

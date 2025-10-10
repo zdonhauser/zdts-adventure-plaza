@@ -14,7 +14,7 @@ export const communityMembers: CommunityMember[] = [
       "/images/tenants/Jungle-Jam-Xtreme/jje_5.jpg",
     ],
     logo: "/images/tenants/Jungle-Jam-Xtreme/jje_logo.jpg",
-    website: "https://junglejamxtreme.com"
+    website: "junglejamxtreme.com"
   },
   {
     name: "Entertainment Venue",

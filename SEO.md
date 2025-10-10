@@ -11,7 +11,7 @@
 - **Meta Description**: 150-160 character description optimized for search
 - **Open Graph Tags**: For Facebook, LinkedIn sharing (og:title, og:description, og:image, og:url, og:type)
 - **Twitter Cards**: For Twitter sharing (twitter:card, twitter:title, twitter:description, twitter:image)
-- **Canonical URL**: https://www.zdtsadventureplaza.com
+- **Canonical URL**: https://www.zdtamusement.com
 - **Viewport**: Responsive viewport configuration
 - **Language**: en-US locale
 
@@ -121,8 +121,8 @@ const structuredData = {
     "postalCode": "78155"
   },
   "telephone": "+1-830-XXX-XXXX", // Add actual phone number
-  "email": "info@zdtsadventureplaza.com", // Update email
-  "url": "https://www.zdtsadventureplaza.com"
+  "email": "info@zdtamusement.com", // Update email
+  "url": "https://www.zdtamusement.com"
 }
 ```
 
@@ -257,11 +257,11 @@ trackSectionView('Community Members', 'tenants');
 
 1. **Verify Ownership**
    - Go to: https://search.google.com/search-console
-   - Add property: https://www.zdtsadventureplaza.com
+   - Add property: https://www.zdtamusement.com
    - Verify via DNS or meta tag
 
 2. **Submit Sitemap**
-   - URL: https://www.zdtsadventureplaza.com/sitemap.xml
+   - URL: https://www.zdtamusement.com/sitemap.xml
    - Monitor indexing status weekly
 
 3. **Monitor Performance**
@@ -321,9 +321,9 @@ When collecting emails for space inquiries:
 {
   "@type": "LocalBusiness",
   "sameAs": [
-    "https://www.facebook.com/zdtsadventureplaza",
-    "https://www.instagram.com/zdtsadventureplaza",
-    "https://twitter.com/zdtsplaza"
+    "https://www.facebook.com/zdtamusement",
+    "https://www.instagram.com/zdtamusement",
+    "https://twitter.com/zdtamusement"
   ]
 }
 ```

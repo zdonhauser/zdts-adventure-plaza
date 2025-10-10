@@ -14,6 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.zdtamusement.com'),
   title: "ZDT's Adventure Plaza in Seguin, TX",
   description: "Supporting small businesses and community entertainment in Seguin, Texas. Premium commercial spaces available for entertainment venues, family attractions, and local entrepreneurs.",
   keywords: ["commercial real estate Seguin TX", "entertainment space for lease", "community entertainment hub", "Seguin Texas business space", "warehouse space Seguin"],
@@ -95,8 +96,8 @@ export default function RootLayout({
     "priceRange": "$$",
     "sameAs": [
       // Add social media profiles here when available
-      // "https://www.facebook.com/zdtsadventureplaza",
-      // "https://www.instagram.com/zdtsadventureplaza",
+      // "https://www.facebook.com/zdtamusement",
+      // "https://www.instagram.com/zdtamusement",
     ]
   };
 

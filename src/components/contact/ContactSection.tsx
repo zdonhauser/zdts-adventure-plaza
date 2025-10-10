@@ -9,7 +9,7 @@ export default function ContactSection() {
           Ready to join our community of local entertainment businesses? Let's make it happen together.
         </p>
         <div className="flex flex-col sm:flex-row gap-6 justify-center">
-          <Button href="mailto:leasing@zdtsadventureplaza.com">
+          <Button href="mailto:info@zdtamusement.com">
             Email Us
           </Button>
           <Button href="tel:+15555555555" variant="secondary">

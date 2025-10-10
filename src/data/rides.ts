@@ -8,12 +8,13 @@ export const featuredRide: FeaturedRide = {
 };
 
 export const soldRides: Ride[] = [
+  { name: "Rock Wall", image: "/images/rides/rock-wall.jpg", status: "Now part of Jungle Jam Xtreme", website: "https://junglejamxtreme.com" },
+  { name: "Jungle Playland", image: "/images/rides/jungle-playland.jpg", status: "Now part of Jungle Jam Xtreme", website: "https://junglejamxtreme.com" },
   { name: "Parachute Drop", image: "/images/rides/parachute.jpg", status: "Relocation details coming soon" },
   { name: "Dizzy Toucan", image: "/images/rides/dizzy-toucan.jpg", status: "Relocation details coming soon" },
   { name: "Go-Karts", image: "/images/rides/go-karts.jpg", status: "Relocation details coming soon" },
   { name: "Viper", image: "/images/rides/viper.jpg", status: "Relocation details coming soon" },
   { name: "Viper's Tail", image: "/images/rides/vipers-tail.jpg", status: "Relocation details coming soon" },
   { name: "Mad Raft Water Coaster", image: "/images/rides/mad-raft.jpg", status: "Relocation details coming soon" },
-  { name: "Rock Wall", image: "/images/rides/rock-wall.jpg", status: "Now part of Jungle Jam Xtreme", website: "https://junglejamxtreme.com" },
-  { name: "Jungle Playland", image: "/images/rides/jungle-playland.jpg", status: "Now part of Jungle Jam Xtreme", website: "https://junglejamxtreme.com" },
+
 ];

@@ -2,6 +2,7 @@ import { forwardRef } from "react";
 import Image from "next/image";
 import { CommunityMember } from "@/data/types";
 import MemberCarousel from "./MemberCarousel";
+import { trackEvent } from "../analytics/GoogleAnalytics";
 
 interface CommunityMemberCardProps {
   member: CommunityMember;
@@ -13,7 +14,16 @@ interface CommunityMemberCardProps {
 
 const CommunityMemberCard = forwardRef<HTMLDivElement, CommunityMemberCardProps>(
   ({ member, isActive, onMouseEnter, onMouseLeave, priority = false }, ref) => {
-    return (
+    const handleClick = () => {
+      if (member.website) {
+        trackEvent('tenant_click', {
+          tenant_name: member.name,
+          website_url: member.website,
+        });
+      }
+    };
+
+    const cardContent = (
       <div
         ref={ref}
         className="group relative overflow-hidden aspect-square cursor-pointer"
@@ -26,23 +36,26 @@ const CommunityMemberCard = forwardRef<HTMLDivElement, CommunityMemberCardProps>
         {/* Overlay with member info */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-100 group-hover:from-black/90 transition-all duration-300 z-10 pointer-events-none" />
 
+        {/* Logo - positioned at top left */}
+        {member.logo && (
+          <div className="absolute top-0 left-0 p-6 z-20">
+            <div className="relative h-24 w-auto inline-block">
+              <Image
+                src={member.logo}
+                alt={`${member.name} logo`}
+                width={240}
+                height={96}
+                className="object-contain object-left"
+                style={{ height: '96px', width: 'auto' }}
+              />
+            </div>
+          </div>
+        )}
+
         <div className="absolute inset-x-0 bottom-0 p-6 z-20 flex flex-col">
-          {/* Logo and category - positioned at bottom, slide up on hover */}
+          {/* Business name and category - positioned at bottom, slide up on hover */}
           <div className="space-y-3 transition-transform duration-300 group-hover:-translate-y-2">
-            {member.logo ? (
-              <div className="relative h-16 w-auto inline-block mb-2">
-                <Image
-                  src={member.logo}
-                  alt={`${member.name} logo`}
-                  width={160}
-                  height={64}
-                  className="object-contain object-left"
-                  style={{ height: '64px', width: 'auto' }}
-                />
-              </div>
-            ) : (
-              <h4 className="text-2xl font-bold text-white mb-2 tracking-tight">{member.name}</h4>
-            )}
+            <h4 className="text-xl font-bold text-white tracking-tight">{member.name}</h4>
             <p className="text-xs uppercase tracking-wider text-gray-300">{member.category}</p>
           </div>
 
@@ -56,20 +69,31 @@ const CommunityMemberCard = forwardRef<HTMLDivElement, CommunityMemberCardProps>
                 {member.address}
               </p>
               {member.website && (
-                <a
-                  href={`https://${member.website}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block text-xs uppercase tracking-wider border-b border-white pb-1 hover:text-gray-300 hover:border-gray-300 transition-colors pointer-events-auto text-white"
-                >
-                  Visit Website →
-                </a>
+                <p className="text-xs uppercase tracking-wider text-white opacity-75">
+                  Click to visit website →
+                </p>
               )}
             </div>
           </div>
         </div>
       </div>
     );
+
+    if (member.website) {
+      return (
+        <a
+          href={`https://${member.website}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={handleClick}
+          className="block"
+        >
+          {cardContent}
+        </a>
+      );
+    }
+
+    return cardContent;
   }
 );
 
