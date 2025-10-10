@@ -1,7 +1,11 @@
+"use client";
+
 import Image from "next/image";
 import { AvailableSpace } from "@/data/types";
 import Badge from "../ui/Badge";
 import ImageGallery from "./ImageGallery";
+import { useContactForm } from "@/context/ContactFormContext";
+import { trackEvent } from "@/components/analytics/GoogleAnalytics";
 
 interface SpaceCardProps {
   space: AvailableSpace;
@@ -11,6 +15,15 @@ interface SpaceCardProps {
 
 export default function SpaceCard({ space, currentImageIndex, onImageSelect }: SpaceCardProps) {
   const currentImage = space.images[currentImageIndex];
+  const { openForm } = useContactForm();
+
+  const handleRequestInfo = () => {
+    trackEvent("contact_form_open", {
+      source: "space_card",
+      space: space.title,
+    });
+    openForm("space", space.title);
+  };
 
   return (
     <div className="group border border-gray-200 bg-white hover:shadow-2xl transition-shadow duration-300">
@@ -56,12 +69,12 @@ export default function SpaceCard({ space, currentImageIndex, onImageSelect }: S
 
         {/* CTA */}
         <div className="pt-4">
-          <a
-            href="#contact"
+          <button
+            onClick={handleRequestInfo}
             className="block w-full text-center bg-black text-white px-6 py-4 text-sm uppercase tracking-wider font-medium hover:bg-gray-900 transition-colors"
           >
             Request Information
-          </a>
+          </button>
         </div>
       </div>
     </div>

@@ -60,3 +60,19 @@ html {
 .tenant-carousel .control-dots .dot.selected {
   background: rgba(255, 255, 255, 1) !important;
 }
+
+/* Contact Form Modal Animation */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slideUp {
+  animation: slideUp 0.3s ease-out;
+}

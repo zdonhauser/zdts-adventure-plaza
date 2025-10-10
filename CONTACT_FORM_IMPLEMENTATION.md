@@ -2,7 +2,7 @@
 
 **Project:** ZDT's Adventure Plaza Contact Form with reCAPTCHA v3 + AWS SES
 **Email Destination:** info@zdtamusement.com
-**Status:** In Progress
+**Status:** Phase 1 & 3 Complete - Awaiting AWS SES Setup (Phase 2)
 **Last Updated:** 2025-10-10
 
 ---
@@ -15,6 +15,7 @@ This document tracks the implementation of a production-ready contact form syste
 - 🎨 Modal-based form UI matching site design system
 - 🔒 Server-side validation and rate limiting
 - 📱 Mobile-responsive with accessibility features
+- 🎢 Special ride inquiry form with park name requirement to filter enthusiasts
 
 ---
 
@@ -23,40 +24,40 @@ This document tracks the implementation of a production-ready contact form syste
 **Goal:** Register site with Google and obtain reCAPTCHA keys for bot protection
 
 ### 1.1 Create/Access Google Account
-- [ ] Go to https://www.google.com/recaptcha/admin
-- [ ] Sign in with Google account (or create one if needed)
-- [ ] Accept Terms of Service if prompted
+- [x] Go to https://www.google.com/recaptcha/admin
+- [x] Sign in with Google account (or create one if needed)
+- [x] Accept Terms of Service if prompted
 
 ### 1.2 Register Your Site
-- [ ] Click "+" button to register a new site
-- [ ] Enter label: `ZDT's Adventure Plaza - Contact Form`
-- [ ] Select reCAPTCHA type: **reCAPTCHA v3**
-- [ ] Add domains:
-  - [ ] `localhost` (for local development)
-  - [ ] `zdtamusement.com` (production domain)
-  - [ ] Your Vercel preview domain if applicable (e.g., `*.vercel.app`)
-- [ ] Accept reCAPTCHA Terms of Service
-- [ ] Click "Submit"
+- [x] Click "+" button to register a new site
+- [x] Enter label: `ZDT's Adventure Plaza - Contact Form`
+- [x] Select reCAPTCHA type: **reCAPTCHA v3**
+- [x] Add domains:
+  - [x] `localhost` (for local development)
+  - [x] `zdtamusement.com` (production domain)
+  - [x] Your Vercel preview domain if applicable (e.g., `*.vercel.app`)
+- [x] Accept reCAPTCHA Terms of Service
+- [x] Click "Submit"
 
 ### 1.3 Save API Keys
-- [ ] Copy **Site Key** (public key - goes in frontend code)
-- [ ] Copy **Secret Key** (private key - goes in backend/env only)
-- [ ] Store keys temporarily in secure location (password manager)
+- [x] Copy **Site Key** (public key - goes in frontend code)
+- [x] Copy **Secret Key** (private key - goes in backend/env only)
+- [x] Store keys temporarily in secure location (password manager)
 
 ### 1.4 Add Environment Variables
-- [ ] Create `.env.local` file in project root if it doesn't exist
-- [ ] Add the following variables:
+- [x] Create `.env.local` file in project root if it doesn't exist
+- [x] Add the following variables:
   ```bash
   # Google reCAPTCHA v3
   NEXT_PUBLIC_RECAPTCHA_SITE_KEY=your_site_key_here
   RECAPTCHA_SECRET_KEY=your_secret_key_here
   ```
-- [ ] Verify `.env.local` is in `.gitignore` (should be by default)
-- [ ] Save the file
+- [x] Verify `.env.local` is in `.gitignore` (should be by default)
+- [x] Save the file
 
 ### 1.5 Install reCAPTCHA Dependencies
-- [ ] Run: `yarn add react-google-recaptcha-v3`
-- [ ] Verify package added to `package.json`
+- [x] Run: `yarn add react-google-recaptcha-v3`
+- [x] Verify package added to `package.json`
 
 **Phase 1 Complete** ✅
 
@@ -183,81 +184,84 @@ This document tracks the implementation of a production-ready contact form syste
 **Goal:** Build the contact form UI with validation and reCAPTCHA integration
 
 ### 3.1 Create Form Data Types
-- [ ] Create/update `src/data/types.ts`
-- [ ] Add `ContactFormData` interface with fields:
+- [x] Create/update `src/data/types.ts`
+- [x] Add `ContactFormData` interface with fields:
   - `name: string`
   - `email: string`
   - `phone: string`
   - `message: string`
   - `spaceInterest?: string` (optional - pre-filled from space cards)
-  - `subject?: string` (optional - for different inquiry types)
+  - `parkName?: string` (optional - for ride inquiries)
+  - `inquiryType: 'space' | 'general' | 'tour' | 'ride'`
 
 ### 3.2 Create ContactForm Component
-- [ ] Create new file: `src/components/contact/ContactForm.tsx`
-- [ ] Set up form state with React hooks
-- [ ] Add form fields:
-  - [ ] Name input (required)
-  - [ ] Email input (required, with email validation)
-  - [ ] Phone input (optional, with phone format validation)
-  - [ ] Message textarea (required)
-  - [ ] Hidden field for space interest (auto-populated)
-- [ ] Style form matching site design system (black/white/gray, bold typography)
-- [ ] Add accessible labels and ARIA attributes
-- [ ] Make form mobile-responsive
+- [x] Create new file: `src/components/contact/ContactForm.tsx`
+- [x] Set up form state with React hooks
+- [x] Add form fields:
+  - [x] Name input (required)
+  - [x] Email input (required, with email validation)
+  - [x] Phone input (optional, with phone format validation)
+  - [x] Message textarea (required)
+  - [x] Park name field (required for ride inquiries)
+- [x] Style form matching site design system (black/white/gray, bold typography)
+- [x] Add accessible labels and ARIA attributes
+- [x] Make form mobile-responsive
 
 ### 3.3 Add Client-Side Validation
-- [ ] Create validation helper functions
-- [ ] Add real-time validation on blur:
-  - [ ] Name: minimum 2 characters
-  - [ ] Email: valid email format with regex
-  - [ ] Phone: valid US phone format (optional field)
-  - [ ] Message: minimum 10 characters
-- [ ] Display inline error messages below fields
-- [ ] Prevent submission if validation fails
-- [ ] Add loading state during submission
+- [x] Create validation helper functions
+- [x] Add real-time validation on blur:
+  - [x] Name: minimum 2 characters
+  - [x] Email: valid email format with regex
+  - [x] Phone: valid US phone format (optional field)
+  - [x] Message: minimum 10 characters
+  - [x] Park name: minimum 3 characters (for ride inquiries)
+- [x] Display inline error messages below fields
+- [x] Prevent submission if validation fails
+- [x] Add loading state during submission
 
 ### 3.4 Integrate reCAPTCHA v3
-- [ ] Wrap app with `GoogleReCaptchaProvider` in `src/app/layout.tsx`
-- [ ] Import and use `useGoogleReCaptcha` hook in ContactForm
-- [ ] Execute reCAPTCHA on form submission (action: 'submit_contact_form')
-- [ ] Include reCAPTCHA token in form submission data
-- [ ] Add reCAPTCHA badge CSS to hide/position badge (optional)
+- [x] Wrap app with `GoogleReCaptchaProvider` in `src/app/layout.tsx`
+- [x] Import and use `useGoogleReCaptcha` hook in ContactForm
+- [x] Execute reCAPTCHA on form submission (action: 'submit_contact_form')
+- [x] Include reCAPTCHA token in form submission data
+- [x] Add reCAPTCHA badge CSS to hide/position badge (optional)
 
 ### 3.5 Create Form Modal/Drawer Component
-- [ ] Create `src/components/contact/ContactFormModal.tsx`
-- [ ] Add modal overlay with backdrop
-- [ ] Add close button (X) in top corner
-- [ ] Add smooth open/close animations
-- [ ] Handle escape key to close modal
-- [ ] Prevent body scroll when modal open
-- [ ] Make modal stack above all other content (high z-index)
+- [x] Create `src/components/contact/ContactFormModal.tsx`
+- [x] Add modal overlay with backdrop
+- [x] Add close button (X) in top corner
+- [x] Add smooth open/close animations
+- [x] Handle escape key to close modal
+- [x] Prevent body scroll when modal open
+- [x] Make modal stack above all other content (high z-index)
 
 ### 3.6 Create Form Context/State Management
-- [ ] Create `src/context/ContactFormContext.tsx` (optional but recommended)
-- [ ] Add state for:
+- [x] Create `src/context/ContactFormContext.tsx` (optional but recommended)
+- [x] Add state for:
   - `isOpen: boolean` (modal visibility)
-  - `prefilledData: Partial<ContactFormData>` (for pre-populating space info)
-- [ ] Export `useContactForm` hook
-- [ ] Export `ContactFormProvider` to wrap app
+  - `inquiryType: InquiryType` (form type)
+  - `spaceInterest?: string` (for pre-populating space info)
+- [x] Export `useContactForm` hook
+- [x] Export `ContactFormProvider` to wrap app
 
 ### 3.7 Update Space Cards to Open Form
-- [ ] Update `src/components/spaces/SpaceCard.tsx`
-- [ ] Replace anchor link `<a href="#contact">` with button
-- [ ] On click, open contact form modal
-- [ ] Pre-populate form with space address/title
-- [ ] Track click event with Google Analytics
+- [x] Update `src/components/spaces/SpaceCard.tsx`
+- [x] Replace anchor link `<a href="#contact">` with button
+- [x] On click, open contact form modal
+- [x] Pre-populate form with space address/title
+- [x] Track click event with Google Analytics
 
-### 3.8 Update Hero Section Button
-- [ ] Update `src/components/hero/HeroSection.tsx`
-- [ ] Change "Join Our Community" button to open contact form
-- [ ] Pre-populate subject as "General Inquiry" or leave blank
-- [ ] Track click event with Google Analytics
+### 3.8 Update Ride Section Button
+- [x] Update `src/components/rides/FeaturedRide.tsx`
+- [x] Change "Inquire Now" to open contact form with ride type
+- [x] Pre-populate with ride name
+- [x] Track click event with Google Analytics
 
 ### 3.9 Update Contact Section Buttons
-- [ ] Update `src/components/contact/ContactSection.tsx`
-- [ ] Keep "Email Us" and "Call Today" buttons as-is
-- [ ] Add "Send Message" button that opens contact form modal
-- [ ] Style consistently with other CTAs
+- [x] Update `src/components/contact/ContactSection.tsx`
+- [x] Replace multiple buttons with single "Contact Us" button
+- [x] Opens contact form modal for general inquiries
+- [x] Style consistently with other CTAs
 
 **Phase 3 Complete** ✅
 

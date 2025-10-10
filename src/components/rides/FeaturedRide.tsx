@@ -1,11 +1,25 @@
+"use client";
+
 import Image from "next/image";
 import { FeaturedRide as FeaturedRideType } from "@/data/types";
+import { useContactForm } from "@/context/ContactFormContext";
+import { trackEvent } from "@/components/analytics/GoogleAnalytics";
 
 interface FeaturedRideProps {
   ride: FeaturedRideType;
 }
 
 export default function FeaturedRide({ ride }: FeaturedRideProps) {
+  const { openForm } = useContactForm();
+
+  const handleInquire = () => {
+    trackEvent("contact_form_open", {
+      source: "featured_ride",
+      ride: ride.name,
+    });
+    openForm("ride", ride.name);
+  };
+
   return (
     <div className="group flex flex-col md:flex-row gap-8">
       <div className="relative w-full md:w-1/2 h-80 overflow-hidden bg-gray-100">
@@ -23,9 +37,12 @@ export default function FeaturedRide({ ride }: FeaturedRideProps) {
         <p className="text-lg text-gray-600 mb-6">
           {ride.description}
         </p>
-        <a href="#contact" className="self-start text-sm uppercase tracking-wider border-b-2 border-black pb-1 hover:text-gray-600 hover:border-gray-600 transition-colors">
+        <button
+          onClick={handleInquire}
+          className="self-start text-sm uppercase tracking-wider border-b-2 border-black pb-1 hover:text-gray-600 hover:border-gray-600 transition-colors"
+        >
           Inquire Now
-        </a>
+        </button>
       </div>
     </div>
   );

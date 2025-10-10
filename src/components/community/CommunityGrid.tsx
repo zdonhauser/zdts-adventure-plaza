@@ -9,6 +9,15 @@ interface CommunityGridProps {
   members: CommunityMember[];
 }
 
+interface CardInfo {
+  index: number;
+  rowPairIndex: number;
+  isLeftCard: boolean;
+  cardCenter: number;
+  distanceFromCenter: number;
+  isAboveCenter: boolean;
+}
+
 export default function CommunityGrid({ members }: CommunityGridProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [activeIndex, setActiveIndex] = useState<number>(0);
@@ -30,9 +39,9 @@ export default function CommunityGrid({ members }: CommunityGridProps) {
     const observer = new IntersectionObserver(
       (entries) => {
         // Find all intersecting cards and group into row pairs
-        const intersecting = entries
+        const intersecting: CardInfo[] = entries
           .filter((entry) => entry.isIntersecting && entry.intersectionRatio > 0.2)
-          .map((entry) => {
+          .map((entry): CardInfo | null => {
             const index = memberRefs.current.findIndex((ref) => ref === entry.target);
             if (index === -1) return null;
 
@@ -51,35 +60,33 @@ export default function CommunityGrid({ members }: CommunityGridProps) {
               isAboveCenter: cardCenter < viewportCenter
             };
           })
-          .filter((item) => item !== null);
+          .filter((item): item is CardInfo => item !== null);
 
         if (intersecting.length === 0) return;
 
         // Find the row pair closest to center
-        const rowPairs = new Map();
+        const rowPairs = new Map<number, CardInfo[]>();
         intersecting.forEach(card => {
           if (!rowPairs.has(card.rowPairIndex)) {
             rowPairs.set(card.rowPairIndex, []);
           }
-          rowPairs.get(card.rowPairIndex).push(card);
+          rowPairs.get(card.rowPairIndex)!.push(card);
         });
 
         // Get the row pair with card closest to viewport center
-        let closestRow = null;
-        let minDistance = Infinity;
-        rowPairs.forEach((cards) => {
-          const distance = Math.min(...cards.map(c => c.distanceFromCenter));
-          if (distance < minDistance) {
-            minDistance = distance;
-            closestRow = cards;
-          }
-        });
+        const closestRow = Array.from(rowPairs.values()).reduce<CardInfo[] | null>((closest, cards) => {
+          const distance = Math.min(...cards.map((c: CardInfo) => c.distanceFromCenter));
+          if (!closest) return cards;
+          const closestDistance = Math.min(...closest.map((c: CardInfo) => c.distanceFromCenter));
+          return distance < closestDistance ? cards : closest;
+        }, null);
 
-        if (closestRow) {
+        if (closestRow && closestRow.length > 0) {
           // Determine which card in the pair to activate based on scroll position
           // If row is entering (above center or just reaching it), show left card
           // If row is centered/exiting (below center), show right card
-          const rowCenter = closestRow[0].cardCenter;
+          const firstCard = closestRow[0];
+          const rowCenter = firstCard.cardCenter;
           const viewportCenter = window.innerHeight / 2;
           const offset = window.innerHeight * 0.15; // Switch 15% before center
 
@@ -87,7 +94,7 @@ export default function CommunityGrid({ members }: CommunityGridProps) {
           // Activate RIGHT when row gets closer to center
           const shouldShowLeft = rowCenter > (viewportCenter + offset);
 
-          const targetCard = closestRow.find(c => c.isLeftCard === shouldShowLeft) || closestRow[0];
+          const targetCard = closestRow.find((c: CardInfo) => c.isLeftCard === shouldShowLeft) || firstCard;
           setActiveIndex(targetCard.index);
         }
       },

@@ -34,3 +34,17 @@ export interface FeaturedRide {
   description: string;
   badge: string;
 }
+
+// Contact Form Types
+export type InquiryType = 'space' | 'general' | 'tour' | 'ride';
+
+export interface ContactFormData {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+  inquiryType: InquiryType;
+  spaceInterest?: string; // Pre-filled when clicking from a space card
+  parkName?: string; // Required for ride inquiries to filter out enthusiasts
+  recaptchaToken?: string; // Added during submission
+}
